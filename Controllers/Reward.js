@@ -31,6 +31,7 @@ module.exports.SaveRewards = function (req, res) {
       var reward = new Reward({
          "type" : data.type,
          "points" : data.points,
+         "comment" : data.comment,
          "user_recieved": data.user_recieved,
          "user_awarded": data.user_awarded
       });

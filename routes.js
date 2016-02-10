@@ -12,7 +12,7 @@ router.route('/api/users')
   .post(user.SaveUsers);
 
 router.route('/api/feeds')
-  .get(feed.GetFeeds);
+  .get(reward.GetAllRewards);
 
 router.route('/api/rewards')
   .get(reward.GetAllRewards);
