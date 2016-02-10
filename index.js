@@ -11,7 +11,7 @@ var app =express();
 
 console.log('express started');
 
-app.use(cors);
+app.use(cors());
 
 var baseRouteResponse = function(req,res) {
 	res.send('test');
