@@ -1,0 +1,33 @@
+{
+  "name": "RewardlyAPI",
+  "version": "1.0.0",
+  "description": "API for peer reward and recognition",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.6",
+    "mongoose": "^4.4.1",
+    "node": "^0.0.0",
+    "socket.io": "^1.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://mustafasaify@bitbucket.org/rewardly/reawrdly-api.git"
+  },
+  "keywords": [
+    "Peer",
+    "recognition"
+  ],
+  "author": "Rewardly",
+    "license": "ISC",
+  "engines": {
+    "node": "0.0.0"
+  }
+}
