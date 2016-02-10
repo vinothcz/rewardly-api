@@ -7,13 +7,16 @@ var User = require('../Models/User');
 
 module.exports.GetUsers = function (req, res) {
 
-      var userName = req.params.username;
+      var userName = req.query.search;
       resultUsers = [];
-
+      var noofitems = req.query.noofitems;
+      console.log(userName);
       if(userName!== '')
       {
             User
-              .find({"user_name": new RegExp(userName, 'i')}, function(err, docs){
+              .find({"user_name": new RegExp(userName, 'i')})
+              .limit(noofitems)
+              .exec(function(err, docs){
                if(!err) {
                    if (docs != null) {
                      console.log(docs);
@@ -27,7 +30,9 @@ module.exports.GetUsers = function (req, res) {
       {
 
             User
-              .find({}, function(err, docs){
+              .find({})
+              .limit(noofitems)
+              .exe(function(err, docs){
                if(!err) {
                    if (docs != null) {
                      console.log(docs);

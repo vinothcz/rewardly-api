@@ -5,9 +5,6 @@ var user = require('./Controllers/User');
 var feed = require('./Controllers/Feed');
 var reward = require('./Controllers/Reward');
 
-router.route('/api/users/:username')
-  .get(user.GetUsers);
-
 router.route('/api/users')
   .get(user.GetUsers);
 
