@@ -3,16 +3,10 @@ var Schema = mongoose.Schema;
 
 var rewardSchema = new Schema( 
 {
-    user_recieved: [ 
-        Number
-    ],
     type : String,
-    user_awarded: [ 
-        Number
-    ],
-    points : String
+    points : String,
+    user_recieved:  [{type: Schema.Types.ObjectId, ref: 'user'}],
+	user_awarded: [{type: Schema.Types.ObjectId, ref: 'user'}]
 });
 
-var rewards = mongoose.model('reward', rewardSchema);
-
-module.exports = rewards;
+module.exports = mongoose.model('reward', rewardSchema);

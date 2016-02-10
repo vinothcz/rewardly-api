@@ -3,27 +3,42 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/Rewardly';
 var resultRewards = [];
+var Reward = require('../Models/Reward');
+var mongoose = require('mongoose');
 
-var getRewards = function(db, callback) {
-   var cursor =db.collection('reward').find();
-   cursor.each(function(err, doc) {
-      if (doc != null) {
-      	 resultRewards.push(doc);
-      } else {
-         callback();
+module.exports.GetAllRewards = function (req, res) {
+
+  	Reward
+     .find({})
+     .populate('user_recieved')
+     .populate('user_awarded')
+     .exec(
+      function(err, docs){
+      if(!err) {
+          if (docs != null) {
+            console.log(docs);
+          resultRewards.push(docs);
+          res.status(200).json(resultRewards);
       }
+   }
    });
 };
 
-module.exports.GetRewards = function (req, res) {
+module.exports.SaveRewards = function (req, res) {
+     
+      var data = req.body
 
-  	MongoClient.connect(url, function(err, db) {
-			if(!err)
-			{
-				getRewards(db, function() {
-				db.close();
-				res.status(200).json(resultRewards);
-				});
-			}
-		});
-};
+      var reward = new Reward({
+         "type" : data.type,
+         "points" : data.points,
+         "user_recieved": data.user_recieved,
+         "user_awarded": data.user_awarded
+      });
+       console.log(reward);
+       reward.save(function (err) {
+         if (err) {
+         console.log(err);
+         }
+         res.json('your data is saved');
+      });
+}

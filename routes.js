@@ -1,17 +1,26 @@
 'use strict';
 
 var router = require('express').Router();
-var user = require('./controllers/User');
-var feed = require('./controllers/Feed');
-var reward = require('./controllers/Reward');
+var user = require('./Controllers/User');
+var feed = require('./Controllers/Feed');
+var reward = require('./Controllers/Reward');
 
 router.route('/api/users/:username')
   .get(user.GetUsers);
+
+router.route('/api/users')
+  .get(user.GetUsers);
+
+router.route('/api/users')
+  .post(user.SaveUsers);
 
 router.route('/api/feeds')
   .get(feed.GetFeeds);
 
 router.route('/api/rewards')
-  .post(reward.GetRewards);
+  .get(reward.GetAllRewards);
+
+router.route('/api/rewards')
+  .post(reward.SaveRewards);
 
 module.exports = router;

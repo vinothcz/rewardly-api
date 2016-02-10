@@ -7,14 +7,12 @@ var userSchema = new Schema(
 	user_name: String,
 	first_name: String,
 	last_name: String,
-	contact: {
-		phone: String,
-		email: String
-	},
+	phone: String,
+	email: String,
 	currently_active: Number,
-	last_login: String
+	last_login: {type: Date, default: Date.Now},
+	recieved_rewards: [{type: Schema.Types.ObjectId, ref: 'Reward'}],
+	given_rewards: [{type: Schema.Types.ObjectId, ref: 'Reward'}]
 });
 
-var User = mongoose.model('user', userSchema);
-
-module.exports = User;
+module.exports =  mongoose.model('user', userSchema);
