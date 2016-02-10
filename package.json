@@ -4,11 +4,13 @@
   "description": "API for peer reward and recognition",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.14.2",
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "mongodb": "^2.1.6",
     "mongoose": "^4.4.1",
-    "node": "^0.0.0"
+    "node": "^0.0.0",
+    "socket.io": "^1.4.5"
   },
   "devDependencies": {},
   "scripts": {
@@ -24,5 +26,8 @@
     "recognition"
   ],
   "author": "Rewardly",
-  "license": "ISC"
+    "license": "ISC",
+  "engines": {
+    "node": "0.0.0"
+  }
 }

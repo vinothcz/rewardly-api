@@ -18,7 +18,7 @@ var baseRouteResponse = function(req,res) {
 }
 
 // Connect to the db
-mongoose.connect("mongodb://localhost:27017/Rewardly_New");
+mongoose.connect("mongodb://rewardly:sharing123@ds059375.mongolab.com:59375/rewardly");
 
 app.use(bodyParser.raw());
 
@@ -32,5 +32,5 @@ app.use(bodyParser.json({
  //Attach Routes & Start App
  app.use(routes);
 
-app.listen('3007');
-console.log('listening at port 3007');
+app.listen('5000');
+console.log('listening at port 5000');
