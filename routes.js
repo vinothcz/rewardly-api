@@ -17,8 +17,8 @@ router.route('/api/users/Authenticate')
 router.route('/api/feeds')
   .get(reward.GetAllRewards);
 
- router.route('/api/topfive')
-  .get(reward.GetTop5Rewards);
+ router.route('/api/users/topfive')
+  .get(user.GetTop5Rewards);
 
 router.route('/api/rewards')
   .get(reward.GetAllRewards);

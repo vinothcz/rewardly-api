@@ -2,6 +2,7 @@
 
 var MongoClient = require('mongodb').MongoClient;
 var User = require('../Models/User');
+var top5users = [];
 
 module.exports.GetUsers = function (req, res) {
 
@@ -40,6 +41,23 @@ module.exports.GetUsers = function (req, res) {
             }
           });
       }
+};
+
+module.exports.GetTop5Rewards = function (req, res) {
+   top5users = [];
+           User
+              .find({})
+              .limit(5)
+              .select('user_name first_name last_name')
+              .exec(function(err, docs){
+               if(!err) {
+                   if (docs != null) {
+                     console.log(docs);
+                   top5users.push((docs));
+                   res.status(200).json(top5users);
+               }
+            }
+          });
 };
 
 module.exports.SaveUsers = function (req, res) {
