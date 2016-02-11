@@ -9,7 +9,7 @@ module.exports.GetUsers = function (req, res) {
 
       var userName = req.query.search;
       resultUsers = [];
-      var noofitems = req.query.noofitems;
+      var noofitems = parseInt(req.query.noofitems);
       console.log(userName);
       if(userName!== '')
       {
@@ -21,8 +21,13 @@ module.exports.GetUsers = function (req, res) {
                    if (docs != null) {
                      console.log(docs);
                    resultUsers.push(docs);
-                   res.status(200).json(resultUsers);
+                   
                }
+               res.status(200).json(resultUsers);
+            }
+            else
+            {
+              console.log(err);
             }
           });
       }
@@ -37,8 +42,9 @@ module.exports.GetUsers = function (req, res) {
                    if (docs != null) {
                      console.log(docs);
                    resultUsers.push(docs);
-                   res.status(200).json(resultUsers);
+                   
                }
+               res.status(200).json(resultUsers);
             }
           });
       }
