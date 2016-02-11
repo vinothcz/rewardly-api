@@ -30,7 +30,7 @@ module.exports.GetUsers = function (req, res) {
             User
               .find({})
               .limit(noofitems)
-              .exe(function(err, docs){
+              .exec(function(err, docs){
                if(!err) {
                    if (docs != null) {
                      console.log(docs);
