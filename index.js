@@ -11,6 +11,8 @@ var app =express();
 
 console.log('express started');
 
+var portNumber = process.env.PORT || 5000;
+
 app.use(cors());
 
 var baseRouteResponse = function(req,res) {
@@ -32,5 +34,5 @@ app.use(bodyParser.json({
  //Attach Routes & Start App
  app.use(routes);
 
-app.listen('5000');
-console.log('listening at port 5000');
+app.listen(portNumber);
+console.log('listening at port ' + portNumber);
