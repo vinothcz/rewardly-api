@@ -4,26 +4,21 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/Rewardly';
 var resultFeeds = [];
 
-var getTopTenFeeds = function(db, callback) {
-   var cursor =db.collection('reward').find();
-   cursor.each(function(err, doc) {
-      if (doc != null) {
-      	 resultFeeds.push(doc);
-      } else {
-         callback();
-      }
-   });
-};
-
 module.exports.GetFeeds = function (req, res) {
 
-  	MongoClient.connect(url, function(err, db) {
-			if(!err)
-			{
-				getTopTenFeeds(db, function() {
-				db.close();
-				res.status(200).json(resultFeeds);
-				});
-			}
-		});
+    Reward
+     .find({})
+     .populate('user_recieved')
+     .populate('user_awarded')
+     .group
+     .exec(
+      function(err, docs){
+      if(!err) {
+          if (docs != null) {
+            console.log(docs);
+          resultRewards.push(docs);
+          res.status(200).json(resultRewards);
+      }
+   }
+   });
 };

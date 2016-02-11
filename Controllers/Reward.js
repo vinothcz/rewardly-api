@@ -7,7 +7,7 @@ var Reward = require('../Models/Reward');
 var mongoose = require('mongoose');
 
 module.exports.GetAllRewards = function (req, res) {
-
+   resultRewards = [];
   	Reward
      .find({})
      .populate('user_recieved')
@@ -16,7 +16,6 @@ module.exports.GetAllRewards = function (req, res) {
       function(err, docs){
       if(!err) {
           if (docs != null) {
-            console.log(docs);
           resultRewards.push(docs);
           res.status(200).json(resultRewards);
       }

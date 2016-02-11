@@ -9,9 +9,9 @@ var mongoose = require('mongoose');
 
 var app =express();
 
-console.log('express started');
+var portNumber = process.env.PORT || 3007;
 
-var portNumber = process.env.PORT || 5000;
+console.log('express started');
 
 app.use(cors());
 

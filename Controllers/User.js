@@ -1,16 +1,14 @@
 'use strict'
 
 var MongoClient = require('mongodb').MongoClient;
-var resultUsers = [];
 var User = require('../Models/User');
-
 
 module.exports.GetUsers = function (req, res) {
 
       var userName = req.query.search;
-      resultUsers = [];
+      var resultUsers = [];
       var noofitems = req.query.noofitems;
-      console.log(userName);
+  
       if(userName!== '')
       {
             User
@@ -54,4 +52,34 @@ module.exports.SaveUsers = function (req, res) {
          }
          res.json('your data is saved');
       });
+};
+
+module.exports.Authenticate = function (req, res) {
+     
+      var emailaddress = req.body.email;
+     
+       if(emailaddress!== '')
+       {   
+            User
+              .find({"email": emailaddress})
+              .limit(1)
+              .exec(function(err, docs){
+                   if (!err && docs != null && docs[0] !== undefined) {
+                    var userrecord = {
+                    "userId" : docs[0]._id,
+                    "user_name": docs[0].user_name,
+                    "currently_active" : docs[0].currently_active
+                   }
+
+                   res.status(200).json(userrecord);
+               }
+               else {
+                  res.status(401).json("user doesn't have access to the application");
+               }
+            });
+        }
+        else {
+
+            res.status(401).json("user doesn't have access to the application");
+        }
 };
